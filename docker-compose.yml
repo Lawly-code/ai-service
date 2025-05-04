@@ -1,0 +1,21 @@
+services:
+  grpc_service:
+    build:
+      context: .
+      dockerfile: Dockerfile-grpc
+    restart: always
+    ports:
+      - "127.0.0.1:50052:50051"
+    env_file:
+      - app/.env
+    networks:
+      - lawly_db
+      - lawly_grpc
+    depends_on:
+      - app
+
+networks:
+  lawly_grpc:
+    external: true
+  lawly_db:
+    external: true

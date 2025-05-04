@@ -10,8 +10,15 @@ class DeepSeekRepository(BaseAssistantRepository):
     Репозиторий для DeepSeek API.
     """
 
-    def __init__(self, api_key: str, model: str = "deepseek-chat", proxy: str | None = None):
-        super().__init__(api_key=api_key, model=model, url="https://api.deepseek.com/v1/chat/completions", proxy=proxy)
+    def __init__(
+        self, api_key: str, model: str = "deepseek-chat", proxy: str | None = None
+    ):
+        super().__init__(
+            api_key=api_key,
+            model=model,
+            url="https://api.deepseek.com/v1/chat/completions",
+            proxy=proxy,
+        )
 
     async def _create_session(self):
         """Создание aiohttp-сессии"""
@@ -48,11 +55,21 @@ class DeepSeekRepository(BaseAssistantRepository):
                 if response.status == 200:
                     data = await response.json()
                     assistant_reply = data['choices'][0]['message']['content']
-                    return OutputDataDTO(assistant_reply=assistant_reply, status=ResponseAIStatus.SUCCESS,
-                                         thread_id=None, response_text=assistant_reply)
+                    return OutputDataDTO(
+                        assistant_reply=assistant_reply,
+                        status=ResponseAIStatus.SUCCESS,
+                        thread_id=None,
+                        response_text=assistant_reply,
+                    )
                 else:
                     text = await response.text()
-                    return OutputDataDTO(status=ResponseAIStatus.ERROR, thread_id=None, error_message=text)
+                    return OutputDataDTO(
+                        status=ResponseAIStatus.ERROR,
+                        thread_id=None,
+                        error_message=text,
+                    )
 
         except Exception as e:
-            return OutputDataDTO(status=ResponseAIStatus.ERROR, thread_id=None, error_message=str(e))
+            return OutputDataDTO(
+                status=ResponseAIStatus.ERROR, thread_id=None, error_message=str(e)
+            )
