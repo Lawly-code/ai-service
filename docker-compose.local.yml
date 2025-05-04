@@ -1,5 +1,5 @@
 services:
-  grpc_service:
+  ai_grpc_service:
     build:
       context: .
       dockerfile: Dockerfile-grpc
