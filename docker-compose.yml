@@ -11,8 +11,6 @@ services:
     networks:
       - lawly_db
       - lawly_grpc
-    depends_on:
-      - app
 
 networks:
   lawly_grpc:
