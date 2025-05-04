@@ -13,7 +13,7 @@ class InputDataDTO(BaseModel):
         """Преобразует текст в формат сообщений"""
         return [
             {"role": "system", "content": self.system_prompt},
-            {"role": "user", "content": self.user_prompt}
+            {"role": "user", "content": self.user_prompt},
         ]
 
 
