@@ -1,0 +1,3 @@
+aiohttp==3.11.18
+pydantic==2.9.2
+git+https://github.com/Lawly-code/protos.git@0.1.4#egg=protos
